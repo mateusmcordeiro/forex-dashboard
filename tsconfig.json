@@ -12,6 +12,7 @@
     }
   ],
   "compilerOptions": {
-    "module": "NodeNext"
+    "module": "NodeNext",
+    "types": ["unplugin-icons/types/vue", "vite/client"]
   }
 }
