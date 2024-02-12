@@ -1,9 +1,10 @@
 <template>
-  <main class="w-full h-full">
+  <main class="w-full h-full p-4">
     <CurrencySelectorForm
       :currencies="currencies"
       v-model:currency="usingCurrencyCode"
       v-model:currency-type="usingCurrencyType"
+      :loading-currencies="isPending"
     />
   </main>
 </template>
@@ -24,7 +25,7 @@ const appStore = useAppStore()
 const { setupCurrencies } = appStore
 const { usingCurrencyType, usingCurrencyCode, currencies } = storeToRefs(appStore)
 
-const { data: currenciesData } = useQuery({
+const { data: currenciesData, isPending } = useQuery({
   queryKey: ['currencies', usingCurrencyType],
   queryFn: getRequiredData
 })

@@ -5,8 +5,21 @@
     :model-value="formData"
     @update:modelValue="changeItens"
   >
-    <SelectElement name="currencyType" placeholder="CurrencyType" :items="currentTypes" />
-    <SelectElement name="currency" placeholder="Currency" :native="false" :items="options" />
+    <SelectElement
+      name="currencyType"
+      placeholder="Currency type"
+      :items="currentTypes"
+      :columns="6"
+    />
+    <SelectElement
+      name="currency"
+      placeholder="Currency"
+      :native="false"
+      :items="options"
+      :columns="6"
+      search
+      :loading="loadingCurrencies"
+    />
   </Vueform>
 </template>
 
@@ -28,16 +41,20 @@ const formData = computed(() => ({
 
 const props = defineProps({
   currencies: {
-    type: Array as PropType<Currency[]>,
-    required: true
+    type: Array as PropType<Currency[]>
+  },
+  loadingCurrencies: {
+    type: Boolean,
+    default: true
   }
 })
 
-const options = computed(() =>
-  props.currencies.map((currency) => ({
-    value: currency.shortCode,
-    label: currency.name
-  }))
+const options = computed(
+  () =>
+    props.currencies?.map((currency) => ({
+      value: currency.shortCode,
+      label: currency.name
+    })) || []
 )
 
 const currentTypes = Object.keys(CurrencyTypes).map((key) => ({
