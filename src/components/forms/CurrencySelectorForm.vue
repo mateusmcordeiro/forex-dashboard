@@ -24,8 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { CurrencyTypes } from '@/core/entities/Currency'
-import type { Currency } from '@/core/entities/Currency'
+import { CurrencyTypesEnum } from '@/core/entities/Currency'
+import type { Currency, CurrencyTypes } from '@/core/entities/Currency'
 import type { PropType } from 'vue'
 
 import { computed } from 'vue'
@@ -57,8 +57,8 @@ const options = computed(
     })) || []
 )
 
-const currentTypes = Object.keys(CurrencyTypes).map((key) => ({
-  value: CurrencyTypes[key as keyof typeof CurrencyTypes],
+const currentTypes = Object.keys(CurrencyTypesEnum).map((key) => ({
+  value: CurrencyTypesEnum[key as keyof typeof CurrencyTypesEnum],
   label: key
 }))
 const changeItens = ({ currencyType: localCurrencyType, currency: localCurrency }) => {

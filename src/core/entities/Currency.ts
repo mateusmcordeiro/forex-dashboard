@@ -1,7 +1,9 @@
-export enum CurrencyTypes {
+export enum CurrencyTypesEnum {
   FIAT = 'fiat',
   CRYPTO = 'crypto'
 }
+
+export type CurrencyTypes = (typeof CurrencyTypesEnum)[keyof typeof CurrencyTypesEnum]
 
 export type Currency = {
   id: number
