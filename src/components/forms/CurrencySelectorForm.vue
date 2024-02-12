@@ -8,8 +8,11 @@
     <SelectElement
       name="currencyType"
       placeholder="Currency type"
+      :native="false"
       :items="currentTypes"
       :columns="6"
+      :can-clear="false"
+      :can-deselect="false"
     />
     <SelectElement
       name="currency"
@@ -19,6 +22,8 @@
       :columns="6"
       search
       :loading="loadingCurrencies"
+      :can-clear="false"
+      :can-deselect="false"
     />
   </Vueform>
 </template>

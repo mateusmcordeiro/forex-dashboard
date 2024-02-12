@@ -1,11 +1,13 @@
 <template>
   <main class="w-full h-full p-4">
-    <CurrencySelectorForm
-      :currencies="currencies"
-      v-model:currency="usingCurrencyCode"
-      v-model:currency-type="usingCurrencyType"
-      :loading-currencies="isPending"
-    />
+    <FContainer>
+      <CurrencySelectorForm
+        :currencies="currencies"
+        v-model:currency="usingCurrencyCode"
+        v-model:currency-type="usingCurrencyType"
+        :loading-currencies="isPending"
+      />
+    </FContainer>
   </main>
 </template>
 <script setup lang="ts">
@@ -20,6 +22,7 @@ import { useAppStore } from '@/stores/app'
 import { getFirstPageData } from '@/core/useCases/getFirstPageData'
 import { getRequiredData } from '@/core/useCases/getRequiredData'
 import CurrencySelectorForm from '@/components/forms/CurrencySelectorForm.vue'
+import FContainer from '@/components/FContainer.vue'
 
 const appStore = useAppStore()
 const { setupCurrencies } = appStore
