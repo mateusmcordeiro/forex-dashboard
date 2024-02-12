@@ -4,8 +4,8 @@ import type { QueryFunctionContext } from '@tanstack/vue-query'
 import { getApiClient } from '@/core/helpers/getApiClient'
 import { Result } from '@/core/helpers/result'
 
-export async function getFirstPageData({ queryKey, signal }: Partial<QueryFunctionContext>) {
-  const [_, base] = queryKey as string[]
+export async function getRequiredData({ queryKey, signal }: Partial<QueryFunctionContext>) {
+  const [_, type] = queryKey as string[]
   try {
     const apiClient = await getApiClient<CBRequestRepository>([
       'CBRequestClientProvider',
@@ -13,11 +13,11 @@ export async function getFirstPageData({ queryKey, signal }: Partial<QueryFuncti
       'CBRequestRepository'
     ])
 
-    return await apiClient.getLatestCurrenciesRates({ base }, signal)
+    return await apiClient.getCurrencies({ type }, signal)
   } catch (error) {
     return Result.error({
-      message: `Error while fetching fistPageData for base ${base}`,
-      source: 'getFirstPageData',
+      message: `Error while fetching getRequiredData for base ${type}`,
+      source: 'getRequiredData',
       originalErrorObject: error as Error
     })
   }
