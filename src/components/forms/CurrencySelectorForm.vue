@@ -58,7 +58,7 @@ const options = computed(
   () =>
     props.currencies?.map((currency) => ({
       value: currency.shortCode,
-      label: currency.name
+      label: `${currency.name} (${currency.shortCode})`
     })) || []
 )
 
